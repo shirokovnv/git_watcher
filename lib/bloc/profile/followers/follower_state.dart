@@ -20,3 +20,12 @@ final class FollowersLoaded extends FollowerState {
   @override
   List<Object> get props => [followers, followerType];
 }
+
+final class FollowerError extends FollowerState {
+  final String message;
+
+  const FollowerError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

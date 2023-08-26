@@ -19,3 +19,12 @@ final class RepoLoaded extends RepoState {
   @override
   List<Object> get props => [repos];
 }
+
+final class RepoError extends RepoState {
+  final String message;
+
+  const RepoError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

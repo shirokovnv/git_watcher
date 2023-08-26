@@ -23,10 +23,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
 
     emit(ProfileLoading());
-    var user = await _users.fetchUser(event.userName);
-
-    user is User
-        ? emit(ProfileLoaded(user: user))
-        : emit(const ProfileError(message: "Not found"));
+    try {
+      var user = await _users.fetchUser(event.userName);
+      emit(ProfileLoaded(user: user));
+    } on Exception catch (e) {
+      emit(ProfileError(message: e.toString()));
+    }
   }
 }

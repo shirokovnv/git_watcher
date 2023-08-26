@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:git_watcher/bloc/profile/followers/follower_bloc.dart';
 import 'package:git_watcher/ui/screens/profile/followers/widgets/follower_widget.dart';
 import 'package:git_watcher/ui/shared/widgets/circular_indicator.dart';
+import 'package:git_watcher/ui/shared/widgets/error_container.dart';
 
 class FollowerListWidget extends StatelessWidget {
   const FollowerListWidget({super.key});
@@ -32,6 +33,10 @@ class FollowerListWidget extends StatelessWidget {
                               followerType: state.followerType);
                         })))
             : const Center(child: Text('No data'));
+      }
+
+      if (state is FollowerError) {
+        return ErrorContainer(message: state.message);
       }
 
       return const Center(child: Text('Unknown state'));

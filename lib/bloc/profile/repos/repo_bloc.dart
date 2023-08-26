@@ -17,7 +17,12 @@ class RepoBloc extends Bloc<RepoEvent, RepoState> {
 
   _onFetchRepo(FetchRepoEvent event, Emitter<RepoState> emit) async {
     emit(RepoLoading());
-    var repos = await _users.fetchPublicRepos(event.userName);
-    emit(RepoLoaded(repos: repos));
+
+    try {
+      var repos = await _users.fetchPublicRepos(event.userName);
+      emit(RepoLoaded(repos: repos));
+    } on Exception catch (e) {
+      emit(RepoError(message: e.toString()));
+    }
   }
 }

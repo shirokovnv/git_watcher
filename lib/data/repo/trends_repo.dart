@@ -13,8 +13,6 @@ class TrendsRepo with GithubConfig implements TrendsInterface {
     var response = await http.get(Uri.parse(
         '$url/search/users?q=followers:>0&sort=followers&order=desc&since=0'));
 
-    List<User> result = List.empty(growable: true);
-
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
 
@@ -27,14 +25,17 @@ class TrendsRepo with GithubConfig implements TrendsInterface {
 
       var responses = await Future.wait(requests);
 
+      List<User> result = List.empty(growable: true);
       for (var response in responses) {
         if (response.statusCode == 200) {
           result.add(User.fromJson(json.decode(response.body)));
         }
       }
+
+      return result;
     }
 
-    return result;
+    return errorResponse(response.statusCode);
   }
 
   @override
@@ -60,6 +61,6 @@ class TrendsRepo with GithubConfig implements TrendsInterface {
           .sublist(0, _trendsLimit);
     }
 
-    return [];
+    return errorResponse(response.statusCode);
   }
 }
