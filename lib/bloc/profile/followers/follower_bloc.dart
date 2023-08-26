@@ -18,9 +18,14 @@ class FollowerBloc extends Bloc<FollowerEvent, FollowerState> {
   Future<void> _onFetchFollowers(
       FetchFollowersEvent event, Emitter<FollowerState> emit) async {
     emit(FollowersLoading());
-    var followers =
-        await _users.fetchFollowers(event.userName, event.followerType);
-    emit(FollowersLoaded(
-        followers: followers, followerType: event.followerType));
+
+    try {
+      var followers =
+          await _users.fetchFollowers(event.userName, event.followerType);
+      emit(FollowersLoaded(
+          followers: followers, followerType: event.followerType));
+    } on Exception catch (e) {
+      emit(FollowerError(message: e.toString()));
+    }
   }
 }

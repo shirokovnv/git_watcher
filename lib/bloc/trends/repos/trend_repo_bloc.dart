@@ -18,7 +18,12 @@ class TrendRepoBloc extends Bloc<TrendRepoEvent, TrendRepoState> {
   _onFetchTrendRepo(
       FetchTrendRepoEvent event, Emitter<TrendRepoState> emit) async {
     emit(TrendRepoLoading());
-    List<Repo> repos = await _trends.fetchRepos(event.lang);
-    emit(TrendRepoLoaded(repos: repos));
+
+    try {
+      List<Repo> repos = await _trends.fetchRepos(event.lang);
+      emit(TrendRepoLoaded(repos: repos));
+    } on Exception catch (e) {
+      emit(TrendRepoError(message: e.toString()));
+    }
   }
 }

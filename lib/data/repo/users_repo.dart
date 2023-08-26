@@ -7,12 +7,14 @@ import 'package:http/http.dart' as http;
 
 class UsersRepo with GithubConfig implements UsersInterface {
   @override
-  Future<User?> fetchUser(String userName) async {
+  Future<User> fetchUser(String userName) async {
     var data = await http.get(Uri.parse('$url/users/$userName'));
 
-    return data.statusCode == 200
-        ? User.fromJson(json.decode(data.body))
-        : null;
+    if (data.statusCode == 200) {
+      return User.fromJson(json.decode(data.body));
+    }
+
+    return errorResponse(data.statusCode);
   }
 
   @override
@@ -21,17 +23,27 @@ class UsersRepo with GithubConfig implements UsersInterface {
         '$url/users/$userName/${type == FollowerType.followee ? 'following' : 'followers'}');
 
     final data = await http.get(uri);
-    Iterable list = json.decode(data.body);
-    return list.map((model) => User.fromJson(model)).toList();
+
+    if (data.statusCode == 200) {
+      Iterable list = json.decode(data.body);
+      return list.map((model) => User.fromJson(model)).toList();
+    }
+
+    return errorResponse(data.statusCode);
   }
 
   @override
   Future<List<Repo>> fetchPublicRepos(String userName) async {
     final data = await http.get(Uri.parse('$url/users/$userName/repos'));
-    Iterable list = json.decode(data.body);
-    List<Repo> result = list.map((model) => Repo.fromJson(model)).toList();
 
-    result.sort((a, b) => b.stargazersCount.compareTo(a.stargazersCount));
-    return result;
+    if (data.statusCode == 200) {
+      Iterable list = json.decode(data.body);
+      List<Repo> result = list.map((model) => Repo.fromJson(model)).toList();
+
+      result.sort((a, b) => b.stargazersCount.compareTo(a.stargazersCount));
+      return result;
+    }
+
+    return errorResponse(data.statusCode);
   }
 }

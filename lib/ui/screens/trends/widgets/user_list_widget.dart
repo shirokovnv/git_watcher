@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:git_watcher/bloc/trends/users/trend_user_bloc.dart';
 import 'package:git_watcher/ui/screens/trends/widgets/user_widget.dart';
 import 'package:git_watcher/ui/shared/widgets/circular_indicator.dart';
+import 'package:git_watcher/ui/shared/widgets/error_container.dart';
 
 class UserListWidget extends StatelessWidget {
   const UserListWidget({super.key});
@@ -31,6 +32,10 @@ class UserListWidget extends StatelessWidget {
                           return UserWidget(user: state.users[index]);
                         })))
             : const Center(child: Text('No data'));
+      }
+
+      if (state is TrendUserError) {
+        return ErrorContainer(message: state.message);
       }
 
       return const Center(child: Text('Unknown state'));

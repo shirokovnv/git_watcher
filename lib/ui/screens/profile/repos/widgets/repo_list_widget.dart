@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:git_watcher/bloc/profile/repos/repo_bloc.dart';
 import 'package:git_watcher/ui/screens/profile/repos/widgets/repo_widget.dart';
 import 'package:git_watcher/ui/shared/widgets/circular_indicator.dart';
+import 'package:git_watcher/ui/shared/widgets/error_container.dart';
 
 class RepoListWidget extends StatelessWidget {
   const RepoListWidget({super.key});
@@ -32,6 +33,10 @@ class RepoListWidget extends StatelessWidget {
                           );
                         })))
             : const Center(child: Text('No data'));
+      }
+
+      if (state is RepoError) {
+        return ErrorContainer(message: state.message);
       }
 
       return const Center(child: Text('Unknown state'));

@@ -18,7 +18,11 @@ class TrendUserBloc extends Bloc<TrendUserEvent, TrendUserState> {
   _onFetchTrendUser(
       FetchTrendUserEvent event, Emitter<TrendUserState> emit) async {
     emit(TrendUserLoading());
-    List<User> users = await _trends.fetchDevelopers();
-    emit(TrendUserLoaded(users: users));
+    try {
+      List<User> users = await _trends.fetchDevelopers();
+      emit(TrendUserLoaded(users: users));
+    } on Exception catch (e) {
+      emit(TrendUserError(message: e.toString()));
+    }
   }
 }

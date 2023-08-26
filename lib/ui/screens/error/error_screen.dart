@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:git_watcher/ui/shared/widgets/error_container.dart';
 import 'package:git_watcher/ui/shared/widgets/top_bar.dart';
 import 'package:git_watcher/ui/shared/widgets/top_drawer.dart';
 
@@ -12,10 +13,6 @@ class ErrorScreen extends StatelessWidget {
     return Scaffold(
         appBar: appBar(context: context, title: 'Error'),
         drawer: const TopDrawer(),
-        body: Center(
-            child: Text(
-          message,
-          style: const TextStyle(fontSize: 24),
-        )));
+        body: ErrorContainer(message: message));
   }
 }

@@ -19,3 +19,12 @@ final class TrendUserLoaded extends TrendUserState {
   @override
   List<Object> get props => [users];
 }
+
+final class TrendUserError extends TrendUserState {
+  final String message;
+
+  const TrendUserError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

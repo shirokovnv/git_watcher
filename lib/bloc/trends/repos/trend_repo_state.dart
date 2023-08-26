@@ -19,3 +19,12 @@ final class TrendRepoLoaded extends TrendRepoState {
   @override
   List<Object> get props => [repos];
 }
+
+final class TrendRepoError extends TrendRepoState {
+  final String message;
+
+  const TrendRepoError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
