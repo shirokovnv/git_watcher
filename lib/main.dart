@@ -23,19 +23,20 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key, required this.container});
+  const MainApp({super.key, required DependencyContainer container})
+      : _container = container;
 
-  final DependencyContainer container;
+  final DependencyContainer _container;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
         providers: [
           RepositoryProvider<PreferencesInterface>(
-            create: (_) => container.prefs,
+            create: (_) => _container.prefs,
           ),
-          RepositoryProvider<UsersInterface>(create: (_) => container.users),
-          RepositoryProvider<TrendsInterface>(create: (_) => container.trends)
+          RepositoryProvider<UsersInterface>(create: (_) => _container.users),
+          RepositoryProvider<TrendsInterface>(create: (_) => _container.trends)
         ],
         child: MultiBlocProvider(
             providers: [
