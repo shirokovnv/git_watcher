@@ -12,24 +12,31 @@ import 'package:git_watcher/data/interfaces/users_interface.dart';
 import 'package:git_watcher/data/repo/preferences_repo.dart';
 import 'package:git_watcher/data/repo/trends_repo.dart';
 import 'package:git_watcher/data/repo/users_repo.dart';
+import 'package:git_watcher/dependency_container.dart';
 import 'package:git_watcher/router/routes_generator.dart';
 
 void main() {
-  runApp(const MainApp());
+  var container =
+      DependencyContainer(PreferencesRepo(), UsersRepo(), TrendsRepo());
+
+  runApp(MainApp(container: container));
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  const MainApp({super.key, required DependencyContainer container})
+      : _container = container;
+
+  final DependencyContainer _container;
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
         providers: [
           RepositoryProvider<PreferencesInterface>(
-            create: (_) => PreferencesRepo(),
+            create: (_) => _container.prefs,
           ),
-          RepositoryProvider<UsersInterface>(create: (_) => UsersRepo()),
-          RepositoryProvider<TrendsInterface>(create: (_) => TrendsRepo())
+          RepositoryProvider<UsersInterface>(create: (_) => _container.users),
+          RepositoryProvider<TrendsInterface>(create: (_) => _container.trends)
         ],
         child: MultiBlocProvider(
             providers: [
