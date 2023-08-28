@@ -11,10 +11,14 @@ class TrendsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var tabs = const TabBar(tabs: [
       Tab(
+        key: Key('repositories-tab'),
         icon: Icon(Icons.language_outlined),
         text: 'Repositories',
       ),
-      Tab(icon: Icon(Icons.person_3_outlined), text: 'Developers')
+      Tab(
+          key: Key('developers-tab'),
+          icon: Icon(Icons.person_3_outlined),
+          text: 'Developers')
     ]);
 
     return DefaultTabController(

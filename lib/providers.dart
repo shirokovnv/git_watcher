@@ -20,6 +20,10 @@ class Providers {
         _users = users,
         _trends = trends;
 
+  PreferencesInterface get prefs => _prefs;
+  UsersInterface get users => _users;
+  TrendsInterface get trends => _trends;
+
   getRepoProviders() {
     return [
       RepositoryProvider<PreferencesInterface>(
