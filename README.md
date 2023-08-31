@@ -10,6 +10,10 @@ Uses [BLOC][link-bloc] for state-management.
 2. Search for popular repos and developers
 3. Switch dark/light theme :)
 
+## Limitations
+
+`Github REST API with unauthorized requests allows only 60 requests per hour`
+
 ## Available platforms
 
 Android | IOS | Linux | MacOS | Windows | Web

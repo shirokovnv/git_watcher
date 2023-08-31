@@ -43,6 +43,12 @@ class AboutScreen extends StatelessWidget {
                           ListTile(
                               leading: Text('3'),
                               title: Text('Switch dark/light theme :)')),
+                          ListTile(
+                            leading: Text('Limitations:',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            title: Text('Only 60 requests per hour is allowed.',
+                                style: TextStyle(fontStyle: FontStyle.italic)),
+                          )
                         ],
                       ))
                 ],
