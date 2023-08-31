@@ -10,7 +10,7 @@ void main() {
       expect(find.byType(AboutListTile), findsOneWidget);
       await tester.tap(find.byType(AboutListTile));
       await tester.pump();
-      expect(find.byType(ListTile), findsNWidgets(4));
+      expect(find.byType(ListTile), findsNWidgets(5));
     });
   });
 }
