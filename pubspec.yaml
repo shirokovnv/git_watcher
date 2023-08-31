@@ -24,6 +24,11 @@ dev_dependencies:
   mocktail: ^1.0.0
   mocktail_image_network: ^1.0.0
 
+flutter_icons:
+  image_path: "assets/images/app-icon.png"
+  android: true
+  windows: true
+
 flutter:
   uses-material-design: true
 
