@@ -2,7 +2,7 @@
 
 Application for working with [Github REST Api][link-github-api], written in [Dart][link-dart]/[Flutter][link-flutter].
 
-Uses [BLOC][link-bloc] for state-management.
+Uses [BLoC][link-bloc] for state-management.
 
 ## What does it do ?
 
