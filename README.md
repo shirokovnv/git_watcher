@@ -2,13 +2,17 @@
 
 Application for working with [Github REST Api][link-github-api], written in [Dart][link-dart]/[Flutter][link-flutter].
 
-Uses [BLOC][link-bloc] for state-management.
+Uses [BLoC][link-bloc] for state-management.
 
 ## What does it do ?
 
 1. View user profile, followers and repos
 2. Search for popular repos and developers
 3. Switch dark/light theme :)
+
+## Limitations
+
+`Github REST API with unauthorized requests allows only 60 requests per hour`
 
 ## Available platforms
 
