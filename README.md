@@ -22,8 +22,9 @@ _It covers such topics as:_
 
 _It does not cover:_
 
-1. Animations
-2. Design
+1. Localizations
+2. Animations
+3. Design
 
 ## Limitations
 
