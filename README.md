@@ -10,6 +10,21 @@ Uses [BLoC][link-bloc] for state-management.
 2. Search for popular repos and developers
 3. Switch dark/light theme :)
 
+**The project created with educational purposes**
+
+_It covers such topics as:_
+
+1. Routing
+2. State management
+3. Working with external API-s
+4. Working with tabs
+5. Testing
+
+_It does not cover:_
+
+1. Animations
+2. Design
+
 ## Limitations
 
 `Github REST API with unauthorized requests allows only 60 requests per hour`
